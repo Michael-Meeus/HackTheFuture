@@ -10,6 +10,22 @@ Code for the HackTheFuture hackathon 2019
 
 ```
 // HTTPPost example
+## Usefull stacks:
+[Monitoring stack](https://github.com/savvydatainsights/monitoring)
+* Prometheus
+* Grafana 
+* NGINX
+* Exporters
+
+[Monitor docker](https://github.com/EricLondon/prometheus-postgresql-grafana-docker)
+* Prometheus
+* Grafana
+* PostgreSql
+* Dockerimage
+
+## Code examples:
+### HTTPPost
+```
 const httpPost = (url, data, callback, err = console.error) => {
   const request = new XMLHttpRequest();
   request.open("POST", url, true);
@@ -28,6 +44,10 @@ const data = JSON.stringify(newPost);
 httpPost("https://jsonplaceholder.typicode.com/posts", data, console.log);
 
 // HTTPGet example
+```
+
+### HTTPGet
+```
 const httpGet = (url, callback, err = console.error) => {
   const request = new XMLHttpRequest();
   request.open("GET", url, true);
@@ -38,6 +58,10 @@ const httpGet = (url, callback, err = console.error) => {
 httpGet("https://jsonplaceholder.typicode.com/posts/1", console.log);
 
 // POST with HTTPS
+```
+
+### POST with HTTPS
+```
 const https = require("https");
 
 const data = JSON.stringify({
@@ -65,6 +89,11 @@ const req = https.request(options, res => {
 });
 
 // GET with node-fetch
+=======
+```
+
+### GET with node-fetch
+```
 const fetch = require("node-fetch");
 
 const base_url = "https://it-project-test-ahukuq.firebaseio.com/";
@@ -74,5 +103,36 @@ const getBrandsById = async id => {
   const myJson = await response.json();
   console.log(JSON.stringify(myJson));
   return JSON.stringify(myJson);
+};
+```
+```
+
+### Websocket
+https://javascript.info/websocket#a-simple-example
+```
+let socket = new WebSocket("ws://javascript.info");
+
+socket.onopen = function(e) {
+  alert("[open] Connection established");
+  alert("Sending to server");
+  socket.send("My name is John");
+};
+
+socket.onmessage = function(event) {
+  alert(`[message] Data received from server: ${event.data}`);
+};
+
+socket.onclose = function(event) {
+  if (event.wasClean) {
+    alert(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
+  } else {
+    // e.g. server process killed or network down
+    // event.code is usually 1006 in this case
+    alert('[close] Connection died');
+  }
+};
+
+socket.onerror = function(error) {
+  alert(`[error] ${error.message}`);
 };
 ```
