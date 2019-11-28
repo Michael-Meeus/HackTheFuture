@@ -1,0 +1,38 @@
+[
+    {
+        "id": "12c24ca8-3fdd-492e-abda-19b732ca44ed",
+        "name": "Cayman National Bank",
+        "difficulty": 0,
+        "apiPath": "/caymannationalbank/"
+    },
+    {
+        "id": "9d235dff-d244-4218-9e3d-18aa2d125254",
+        "name": "Central bank Bahamas",
+        "difficulty": 1,
+        "apiPath": "/centralbankbahamas/"
+    },
+    {
+        "id": "7e11e3f8-edd7-45a0-8291-507cbd5fe362",
+        "name": "Banco Santa Cruz",
+        "difficulty": 2,
+        "apiPath": "/bancosantacruz/"
+    },
+    {
+        "id": "9225a13e-13a4-4bf4-942c-770c370da7d1",
+        "name": "Swiss National Bank",
+        "difficulty": 3,
+        "apiPath": "/swissnationalbank/"
+    },
+    {
+        "id": "8949cd04-8c78-4c25-8488-03bd4a07574c",
+        "name": "Belize Bank",
+        "difficulty": 4,
+        "apiPath": "/belizebank/"
+    },
+    {
+        "id": "53de5498-5f89-4fb9-b0bc-a7a4cbf9e4ee",
+        "name": "DBS Singapore",
+        "difficulty": 5,
+        "apiPath": "/dbssingapore/"
+    }
+]

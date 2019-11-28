@@ -8,6 +8,8 @@ Code for the HackTheFuture hackathon 2019
  ## JavaScript code snippet examples:
  [30-seconds-of-code](https://github.com/30-seconds/30-seconds-of-code#readme)
 
+```
+// HTTPPost example
 ## Usefull stacks:
 [Monitoring stack](https://github.com/savvydatainsights/monitoring)
 * Prometheus
@@ -40,6 +42,8 @@ const newPost = {
 };
 const data = JSON.stringify(newPost);
 httpPost("https://jsonplaceholder.typicode.com/posts", data, console.log);
+
+// HTTPGet example
 ```
 
 ### HTTPGet
@@ -52,6 +56,8 @@ const httpGet = (url, callback, err = console.error) => {
   request.send();
 };
 httpGet("https://jsonplaceholder.typicode.com/posts/1", console.log);
+
+// POST with HTTPS
 ```
 
 ### POST with HTTPS
@@ -81,6 +87,9 @@ const req = https.request(options, res => {
   req.write(data);
   req.end();
 });
+
+// GET with node-fetch
+=======
 ```
 
 ### GET with node-fetch
@@ -95,6 +104,7 @@ const getBrandsById = async id => {
   console.log(JSON.stringify(myJson));
   return JSON.stringify(myJson);
 };
+```
 ```
 
 ### Websocket
