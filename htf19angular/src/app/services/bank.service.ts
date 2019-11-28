@@ -1,36 +1,36 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import { Bank } from "../models/Bank.model";
 import { Observable, of } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { catchError, map, tap } from "rxjs/operators";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class BankService {
-
-  private banksUrl = "banks"; // URL to web api
+  private banksUrl = `https://htf.zinderlabs.com/${this.bank}`; // URL to web api
   httpOptions = {
-    headers: new HttpHeaders({ "Content-Type": "application/json" })
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "67a716cee57c9d6bb862151753b3fc81"
+    })
   };
 
-  constructor(
-    private http: HttpClient
-  ) {}
+  constructor(private http: HttpClient, private bank: Bank) {}
 
   /** GET banks from the server */
   getBanks(): Observable<Bank[]> {
-    return this.http.get<Bank[]>(this.banksUrl).pipe(
-      catchError(this.handleError<Bank[]>("getBanks", []))
-    );
+    return this.http
+      .get<Bank[]>(this.banksUrl)
+      .pipe(catchError(this.handleError<Bank[]>("getBanks", [])));
   }
 
   /** GET bank by id. Will 404 if id not found */
   getBank(id: number): Observable<Bank> {
     const url = `${this.banksUrl}/${id}`;
-    return this.http.get<Bank>(url).pipe(
-      catchError(this.handleError<Bank>(`getBank id=${id}`))
-    );
+    return this.http
+      .get<Bank>(url)
+      .pipe(catchError(this.handleError<Bank>(`getBank id=${id}`)));
 
     // Different syntax for returning:
     // return of(BANKS.find(bank => bank.id === id));
@@ -43,33 +43,33 @@ export class BankService {
       return of([]);
     }
 
-    return this.http.get<Bank[]>(`${this.banksUrl}/?name=${term}`).pipe(
-      catchError(this.handleError<Bank[]>('searchBanks', []))
-    );
+    return this.http
+      .get<Bank[]>(`${this.banksUrl}/?name=${term}`)
+      .pipe(catchError(this.handleError<Bank[]>("searchBanks", [])));
   }
 
   /** PUT: update the bank on the server */
   updateBank(bank: Bank): Observable<any> {
-    return this.http.put(this.banksUrl, bank, this.httpOptions).pipe(
-      catchError(this.handleError<any>("updateBank"))
-    );
+    return this.http
+      .put(this.banksUrl, bank, this.httpOptions)
+      .pipe(catchError(this.handleError<any>("updateBank")));
   }
 
   /** POST: add a new bank to the server */
   addBank(bank: Bank): Observable<Bank> {
-    return this.http.post<Bank>(this.banksUrl, bank, this.httpOptions).pipe(
-      catchError(this.handleError<Bank>("addBank"))
-    );
+    return this.http
+      .post<Bank>(this.banksUrl, bank, this.httpOptions)
+      .pipe(catchError(this.handleError<Bank>("addBank")));
   }
 
   /** DELETE: delete the bank from the server */
   deleteBank(bank: Bank | number): Observable<Bank> {
-    const id = typeof bank === 'number' ? bank : bank.id;
+    const id = typeof bank === "number" ? bank : bank.id;
     const url = `${this.banksUrl}/${id}`;
 
-    return this.http.delete<Bank>(url, this.httpOptions).pipe(
-      catchError(this.handleError<Bank>('deleteBank'))
-    );
+    return this.http
+      .delete<Bank>(url, this.httpOptions)
+      .pipe(catchError(this.handleError<Bank>("deleteBank")));
   }
 
   /**
@@ -81,7 +81,6 @@ export class BankService {
   private handleError<T>(operation = "operation", result?: T) {
     return (error: any): Observable<T> => {
       console.error(error); // log to console instead
-
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
