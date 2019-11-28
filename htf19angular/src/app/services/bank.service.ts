@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Bank } from "../bank";
-import { BANKS } from "./mock-banks";
+import { Bank } from "../models/Bank.model";
 import { Observable, of } from "rxjs";
-import { MessageService } from "./message.service";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { catchError, map, tap } from "rxjs/operators";
 
