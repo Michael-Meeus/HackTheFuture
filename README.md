@@ -7,3 +7,72 @@ Code for the HackTheFuture hackathon 2019
  
  ## JavaScript code snippet examples:
  [30-seconds-of-code](https://github.com/30-seconds/30-seconds-of-code#readme)
+
+```
+// HTTPPost example
+const httpPost = (url, data, callback, err = console.error) => {
+  const request = new XMLHttpRequest();
+  request.open("POST", url, true);
+  request.setRequestHeader("Content-type", "application/json; charset=utf-8");
+  request.onload = () => callback(request.responseText);
+  request.onerror = () => err(request);
+  request.send(data);
+};
+const newPost = {
+  userId: 1,
+  id: 1337,
+  title: "Foo",
+  body: "bar bar bar"
+};
+const data = JSON.stringify(newPost);
+httpPost("https://jsonplaceholder.typicode.com/posts", data, console.log);
+
+// HTTPGet example
+const httpGet = (url, callback, err = console.error) => {
+  const request = new XMLHttpRequest();
+  request.open("GET", url, true);
+  request.onload = () => callback(request.responseText);
+  request.onerror = () => err(request);
+  request.send();
+};
+httpGet("https://jsonplaceholder.typicode.com/posts/1", console.log);
+
+// POST with HTTPS
+const https = require("https");
+
+const data = JSON.stringify({
+  brand: brand,
+  appliance: appliance,
+  serie: serie
+});
+
+const options = {
+  hostname: "",
+  port: "",
+  path: "/orders",
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Content-Length": data.length
+  }
+};
+
+const req = https.request(options, res => {
+  console.log(`statusCode: ${res.statusCode}`);
+
+  req.write(data);
+  req.end();
+});
+
+// GET with node-fetch
+const fetch = require("node-fetch");
+
+const base_url = "https://it-project-test-ahukuq.firebaseio.com/";
+
+const getBrandsById = async id => {
+  const response = await fetch(base_url + "Brands/" + id.toString());
+  const myJson = await response.json();
+  console.log(JSON.stringify(myJson));
+  return JSON.stringify(myJson);
+};
+```
