@@ -22,7 +22,7 @@ export class BankService {
   constructor(private http: HttpClient) { }
   getAllBanks(): Observable<Bank[]> {
    const allUrl =  `${this.banksUrl}${this.fix}`;
-   return this.http.get<Bank[]>(allUrl);
+   return this.http.get<Bank[]>(allUrl, { headers: this.httpOptions.headers});
   }
 
 }

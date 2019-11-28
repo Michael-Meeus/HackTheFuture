@@ -1,13 +1,7 @@
-<div class="container">
-    <div class="row">
-      <div class="col-sm">
 
+<div class="align-middle">
+    <div class="flex">
+        <app-bank-card *ngFor="let bank of banks" [bank]="bank"></app-bank-card>
       </div>
-      <div class="col-sm">
-   <app-bank-card *ngFor="let bank of banks"></app-bank-card>
-      </div>
-      <div class="col-sm">
+</div>
 
-      </div>
-    </div>
-  </div>
