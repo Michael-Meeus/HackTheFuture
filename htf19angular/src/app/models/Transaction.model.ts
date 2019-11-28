@@ -8,5 +8,4 @@ amount: number
 currency: string;
 time: string;
 message: string;
-
 }
