@@ -23,6 +23,6 @@ export class AccountService {
   constructor(private http: HttpClient) {}
   getAllAccounts(bankApi: string): Observable<Account[]> {
     const allUrl = `${this.banksUrl}${bankApi}${this.fix}`;
-    return this.http.get<Account[]>(allUrl);
+    return this.http.get<Account[]>(allUrl, this.httpOptions);
   }
 }

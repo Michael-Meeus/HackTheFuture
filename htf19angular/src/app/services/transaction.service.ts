@@ -20,6 +20,6 @@ export class TransactionService {
   constructor(private http: HttpClient) {}
   getAllTransactions(bankApi: string): Observable<Transaction[]> {
     const allUrl = `${this.banksUrl}${bankApi}${this.fix}`;
-    return this.http.get<Transaction[]>(allUrl);
+    return this.http.get<Transaction[]>(allUrl, this.httpOptions);
   }
 }
