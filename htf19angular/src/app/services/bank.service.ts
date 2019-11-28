@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BankService {
-
   private banksUrl =  `https://htf.zinderlabs.com/`;
   private fix = 'banks';
 
