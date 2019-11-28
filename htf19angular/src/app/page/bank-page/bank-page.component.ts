@@ -12,7 +12,7 @@ export class BankPageComponent implements OnInit {
   constructor(private bankService: BankService) { }
 
   ngOnInit() {
-    this.bankService.getBanks().subscribe({
+    this.bankService.getAllBanks().subscribe({
         next: (data) => {
           this.banks = data;
     },
