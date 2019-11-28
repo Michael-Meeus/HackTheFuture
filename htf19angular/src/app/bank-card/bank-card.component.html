@@ -1,7 +1,21 @@
 
-  <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
+<mat-card class="example-card">
+    <mat-card-header>
+        <mat-icon aria-hidden="false" aria-label="Example home icon">account_balance
+          </mat-icon>
+          <br>
+        <mat-card-title>{{bank.name}}</mat-card-title>
 
+
+      </mat-card-header>
+    <img mat-card-image src="/assets/bank.jpg" alt="Photo of a bank">
+    <mat-card-content>
+      <p>
+        difficulty
+        {{bank.difficulty}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="accent">Details</button>
+    </mat-card-actions>
+  </mat-card>

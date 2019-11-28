@@ -14,6 +14,7 @@ export class BankPageComponent implements OnInit {
   ngOnInit() {
     this.bankService.getAllBanks().subscribe({
         next: (data) => {
+          console.log(JSON.stringify(data));
           this.banks = data;
     },
     error: err => this.handleError(err)});
