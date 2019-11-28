@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Bank } from 'src/app/models/Bank.model';
+import { BankService } from 'src/app/services/bank.service';
 
 @Component({
   selector: 'app-bank-page',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bank-page.component.css']
 })
 export class BankPageComponent implements OnInit {
-
-  constructor() { }
+  banks: Bank[];
+  constructor(private bankService: BankService) { }
 
   ngOnInit() {
+    this.bankService.getBanks().subscribe({
+        next: (data) => {
+          this.banks = data;
+    },
+    error: err => this.handleError(err)});
+  }
+  handleError(err: any): void {
+  console.error(err);
   }
 
 }
